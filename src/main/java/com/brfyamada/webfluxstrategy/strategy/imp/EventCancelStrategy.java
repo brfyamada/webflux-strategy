@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EventCancelStrategy implements EventStrategy {
+public class EventCancelStrategy extends EventStrategy {
 
     @Autowired
     private EventProcessorService eventProcessorService;

@@ -2,6 +2,7 @@ package com.brfyamada.webfluxstrategy.controllers;
 
 import com.brfyamada.webfluxstrategy.domain.Event;
 import com.brfyamada.webfluxstrategy.services.EventService;
+import com.brfyamada.webfluxstrategy.services.MessageService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -12,6 +13,8 @@ import reactor.core.publisher.Mono;
 public class EventController {
 
     private final EventService eventService;
+
+    private final MessageService messageService;
 
     @GetMapping("/{id}")
     public Mono<Event> getEventById(@PathVariable String id) {
@@ -33,5 +36,12 @@ public class EventController {
     @PostMapping("/event")
     public Mono<Event> saveEvent(@RequestBody Event event) {
         return eventService.saveEvent(event);
+    }
+
+    @PostMapping("/event-message")
+    public Mono<String> sendEventToQueue(@RequestBody Event event) {
+
+        String queue = "http://localhost:4566/000000000000/EventQueue";
+        return messageService.sendMessage(queue, event);
     }
 }

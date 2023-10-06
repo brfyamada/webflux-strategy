@@ -12,4 +12,11 @@ public class Event {
     private String message;
     private int version;
 
+    public Object toMessageDomain() {
+        return Event.builder()
+                .eventType(this.eventType)
+                .message(this.message)
+                .version(this.version)
+                .build();
+    }
 }

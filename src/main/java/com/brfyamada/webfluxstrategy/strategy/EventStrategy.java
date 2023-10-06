@@ -2,12 +2,12 @@ package com.brfyamada.webfluxstrategy.strategy;
 
 import com.brfyamada.webfluxstrategy.domain.Event;
 
-public interface EventStrategy {
+public abstract class EventStrategy {
 
-    boolean doesApply(Event event);
+    public abstract boolean doesApply(Event event);
 
-    Event process(Event event);
+    public abstract Event process(Event event);
 
-    int getStrategyCode(Event event);
+    public abstract int getStrategyCode(Event event);
 
 }
